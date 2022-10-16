@@ -5,3 +5,6 @@
 - News articles below
 - Pagination for more articles
 - Favorite articles
+
+## Resources
+- [CryptoNews API](https://cryptonews-api.com/)
