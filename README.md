@@ -8,3 +8,4 @@
 
 ## Resources
 - [CryptoNews API](https://cryptonews-api.com/)
+- [Coingecko API](https://www.coingecko.com/api/documentations/v3)
