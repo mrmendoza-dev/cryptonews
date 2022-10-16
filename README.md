@@ -1,4 +1,4 @@
-# cryptonews
+# CryptoNews
 
 ## TO DO
 - Video carousel section at top
