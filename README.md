@@ -2,9 +2,13 @@
 
 ## TO DO
 - Video carousel section at top
-- News articles below
+    - Change current video in state
 - Pagination for more articles
 - Favorite articles
+- Format date
+- Crypto tickers
+- Article sentiment indicator
+
 
 ## Resources
 - [CryptoNews API](https://cryptonews-api.com/)

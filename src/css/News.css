@@ -40,6 +40,7 @@
 
 .news-card {
     display: flex;
+    flex-direction: column;
     gap: 1.4em;
     padding: 1em 1em;
     border-bottom: 1px solid var(--clr-hr);
@@ -47,6 +48,9 @@
     max-width: 1000px;
 
 }
+
+
+
 .news-card:hover {
     background-color: var(--clr-row);
 }
@@ -90,7 +94,9 @@
     display: flex;
     justify-content: flex-start;
     gap: .6em;
-    margin-bottom: .2em;
+    margin-bottom: .3em;
+    border-bottom: 1px solid var(--clr-hr);
+
 }
 .news-text {
     line-height: 1.2;
@@ -99,6 +105,11 @@
     letter-spacing: .6px;
 }
 
+@media (min-width:700px) {
+    .news-card {
+        flex-direction: row;
+    }
+}
 
 
 .news-video {
