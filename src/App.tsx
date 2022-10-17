@@ -65,7 +65,7 @@ function App() {
       fetch("./src/data/cryptonews_light.json")
         .then((res) => res.json())
         .then((data) => {
-          let cropped = data.slice(0,100)
+          let cropped = data.slice(0,1000)
           setNews(cropped);
         });
     }
@@ -130,14 +130,36 @@ function App() {
       </div>
 
       <div className="News">
-        <div className="news-video"></div>
+        <div className="news-video">
+          <div className="video-showcase">
+            {news
+              .filter((article) => article.type === "Video")
+              .slice(0, 1)
+              .map((article) => {
+
+                let videoLink = article.news_url.replace("watch?v=", "embed/");
+                
+                return (
+                  <div key={nanoid()} className="">
+                    <iframe className="video-frame"  src={videoLink}></iframe>
+                  </div>
+                );
+              })}
+          </div>
+        </div>
+
         <div className="news-latest">
           {news
             .filter((article) => article.type === "Article")
             .map((article) => {
               return (
                 <div key={nanoid()} className="news-card">
-                  <a className="news-img-box" href={article.news_url} target="_blank" rel="noopener">
+                  <a
+                    className="news-img-box"
+                    href={article.news_url}
+                    target="_blank"
+                    rel="noopener"
+                  >
                     <img className="news-img" src={article.image_url} />
                   </a>
 
