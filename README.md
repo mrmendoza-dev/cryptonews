@@ -4,6 +4,8 @@
 - Video carousel section at top
     - Change current video in state
 - Pagination for more articles
+    - Sets of 10-20 articles per page, move to next
+    - OR endless scrolling
 - Favorite articles
 - Format date
 - Crypto tickers
