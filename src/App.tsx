@@ -20,7 +20,7 @@ const Percent = styled.p<{ data: number }>`
 
 
 function App() {
-  const [news, setNews] = useState([]);
+  const [news, setNews] = useState<any[]>([]);
   const [cryptos, setCryptos] = useState([]);
   const [globalData, setGlobalData] = useState({
     active_cryptocurrencies: 0,
