@@ -57,3 +57,75 @@ button {
 .center {
   text-align: center;
 }
+
+.App {
+  background-color: var(--clr-bg);
+  color: var(--clr-font);
+  font-size: 16px;
+  font-weight: 400;
+    height: 100vh;
+    /* overflow: hidden; */
+
+}
+
+
+
+
+
+
+.crypto-row {
+  align-items: center;
+  gap: 1em;
+}
+
+
+.crypto-img {
+  width: 24px;
+}
+.crypto-symbol {
+  text-transform: uppercase;
+}
+
+.coin-data {
+  display: flex;
+  gap: .8em;
+  align-items: center;
+}
+
+
+
+
+
+.crypto-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--clr-font);
+
+}
+
+.crypto-symbol {
+  font-size: .8rem;
+  font-weight: 400;
+}
+
+
+
+
+
+.flex {
+    gap: .5em;
+    display: flex;
+}
+
+
+
+.Cryptos {
+  max-height: 85vh;
+  overflow-y:scroll;
+  border-bottom: 1px solid var(--clr-fontAccent);
+    padding: 0 1em;
+  width: 90%;
+    margin: 0 auto;
+
+}
+
