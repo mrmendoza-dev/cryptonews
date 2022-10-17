@@ -20,7 +20,10 @@ const Percent = styled.p<{ data: number }>`
 
 
 function App() {
-  const [news, setNews] = useState<any[]>([]);
+  // const [news, setNews] = useState<any[]>([]);
+  const [articles, setArticles] = useState<any[]>([]);
+  const [videos, setVideos] = useState<any[]>([]);
+  const [currentVideo, setCurrentVideo] = useState();
   const [cryptos, setCryptos] = useState([]);
   const [globalData, setGlobalData] = useState({
     active_cryptocurrencies: 0,
@@ -65,8 +68,19 @@ function App() {
       fetch("./src/data/cryptonews_light.json")
         .then((res) => res.json())
         .then((data) => {
+          let articles: any = [];
+          let videos: any = [];
           let cropped = data.slice(0,1000)
-          setNews(cropped);
+          cropped.forEach((item: any) => {
+            if (item.type === "Article") {
+              articles.push(item)
+            } else if (item.type === "Video") {
+              videos.push(item)
+            }
+          });
+          setArticles(articles);
+          setVideos(videos);
+
         });
     }
 
@@ -75,7 +89,10 @@ function App() {
   useEffect(getGlobalData, []);
   useEffect(getNews, []);
 
-
+  useEffect(()=> {
+    setCurrentVideo(videos[0])
+    console.log(videos[0])
+  }, [videos])
 
 
 
@@ -132,50 +149,51 @@ function App() {
       <div className="News">
         <div className="news-video">
           <div className="video-showcase">
-            {news
-              .filter((article) => article.type === "Video")
-              .slice(0, 1)
-              .map((article) => {
+            {videos.slice(0, 1).map((article) => {
+              let videoLink = article.news_url.replace("watch?v=", "embed/");
 
-                let videoLink = article.news_url.replace("watch?v=", "embed/");
-                
-                return (
-                  <div key={nanoid()} className="">
-                    <iframe className="video-frame"  src={videoLink}></iframe>
-                  </div>
-                );
-              })}
+              return (
+                <div key={nanoid()} className="">
+                  <iframe className="video-frame" src={videoLink}></iframe>
+                </div>
+              );
+            })}
+
+              {/* <iframe
+                className="video-frame"
+                src={currentVideo.news_url.replace("watch?v=", "embed/")}
+              ></iframe> */}
+
+
           </div>
         </div>
 
         <div className="news-latest">
-          {news
-            .filter((article) => article.type === "Article")
-            .map((article) => {
-              return (
-                <div key={nanoid()} className="news-card">
-                  <a
-                    className="news-img-box"
-                    href={article.news_url}
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    <img className="news-img" src={article.image_url} />
-                  </a>
+          {articles.map((article) => {
+            return (
+              <div key={nanoid()} className="news-card">
+                <a
+                  className="news-img-box"
+                  href={article.news_url}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <img className="news-img" src={article.image_url} />
+                </a>
 
-                  <div className="news-info">
-                    <a href={article.news_url} target="_blank" rel="noopener">
-                      <p className="news-title">{article.title}</p>
-                    </a>
-                    <div className="news-subheader">
-                      <p className="news-source">{article.source_name}</p>
-                      <p className="news-date">{article.date}</p>
-                    </div>
-                    <p className="news-text">{article.text}</p>
+                <div className="news-info">
+                  <a href={article.news_url} target="_blank" rel="noopener">
+                    <p className="news-title">{article.title}</p>
+                  </a>
+                  <div className="news-subheader">
+                    <p className="news-source">{article.source_name}</p>
+                    <p className="news-date">{article.date}</p>
                   </div>
+                  <p className="news-text">{article.text}</p>
                 </div>
-              );
-            })}
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

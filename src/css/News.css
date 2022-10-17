@@ -44,6 +44,7 @@
     padding: 1em 1em;
     border-bottom: 1px solid var(--clr-hr);
     transition: background-color 200ms;
+    max-width: 1000px;
 
 }
 .news-card:hover {
@@ -113,6 +114,8 @@
     justify-content: center;
     background-color: #0b0b0b;
     /* height: 400px; */
+        max-width: 1200px;
+
 }
 
 .video-frame {
