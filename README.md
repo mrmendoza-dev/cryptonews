@@ -8,6 +8,7 @@
     - OR endless scrolling
 - Favorite articles
 - Format date
+    - Display how long since posted
 - Crypto tickers
 - Article sentiment indicator
 

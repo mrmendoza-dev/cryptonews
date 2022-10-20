@@ -66,8 +66,9 @@ function App() {
 
     function getNews() {
       fetch("./src/data/cryptonews_light.json")
-        .then((res) => res.json())
+        .then((res) => res.text())
         .then((data) => {
+          console.log(data);
           let articles: any = [];
           let videos: any = [];
           let cropped = data.slice(0,1000)
@@ -91,7 +92,6 @@ function App() {
 
   useEffect(()=> {
     setCurrentVideo(videos[0])
-    console.log(videos[0])
   }, [videos])
 
 
