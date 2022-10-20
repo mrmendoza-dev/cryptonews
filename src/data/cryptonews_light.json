@@ -1,4 +1,5 @@
-[
+{
+  "data": [
   {
     "news_url": "https://www.cryptopolitan.com/bitcoin-binance-coin-tron-and-ftx-token-daily-price-analyses-30-april-roundup/",
     "image_url": "https://crypto.snapi.dev/images/v1/t/a/roundup-5-135357.png",
@@ -22288,3 +22289,6 @@
     ]
   }
 ]
+  
+}
+

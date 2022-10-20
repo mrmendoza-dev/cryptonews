@@ -8,6 +8,8 @@ import logo from "./assets/logo.png";
 import DarkMode from "./components/DarkMode";
 import styled from "styled-components";
 
+import newsData from "./data/cryptonews_light.json";
+
 
 const Percent = styled.p<{ data: number }>`
   color: ${(props: any) =>
@@ -66,12 +68,12 @@ function App() {
 
     function getNews() {
       fetch("./src/data/cryptonews_light.json")
-        .then((res) => res.text())
+        .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           let articles: any = [];
           let videos: any = [];
-          let cropped = data.slice(0,1000)
+          let cropped = data.data.slice(0, 1000);
+          console.log(cropped);
           // cropped.forEach((item: any) => {
           //   if (item.type === "Article") {
           //     articles.push(item)
@@ -81,7 +83,6 @@ function App() {
           // });
           setArticles(articles);
           setVideos(videos);
-
         });
     }
 
