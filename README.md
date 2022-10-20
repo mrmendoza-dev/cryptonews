@@ -16,3 +16,6 @@
 ## Resources
 - [CryptoNews API](https://cryptonews-api.com/)
 - [Coingecko API](https://www.coingecko.com/api/documentations/v3)
+- [Decrypt](https://decrypt.co/)
+- [Cointelegraph](https://cointelegraph.com/)
+- [CoinDesk](https://www.coindesk.com/)
