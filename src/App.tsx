@@ -74,13 +74,13 @@ function App() {
           let videos: any = [];
           let cropped = data.data.slice(0, 1000);
           console.log(cropped);
-          // cropped.forEach((item: any) => {
-          //   if (item.type === "Article") {
-          //     articles.push(item)
-          //   } else if (item.type === "Video") {
-          //     videos.push(item)
-          //   }
-          // });
+          cropped.forEach((item: any) => {
+            if (item.type === "Article") {
+              articles.push(item)
+            } else if (item.type === "Video") {
+              videos.push(item)
+            }
+          });
           setArticles(articles);
           setVideos(videos);
         });
