@@ -4,9 +4,11 @@ import "./css/News.css";
 import {nanoid} from "nanoid"
 import logo from "./assets/logo.png";
 import styled from "styled-components";
-import newsData from "./data/cryptonews_light.json";
+import newsData from "./data/cryptonews_data";
 import Footer from "./components/Nav/Footer";
 import Header from "./components/Nav/Header";
+
+
 
 const Percent = styled.p<{ data: number }>`
   color: ${(props: any) =>
@@ -64,23 +66,37 @@ function App() {
   }
 
     function getNews() {
-      fetch("./src/data/cryptonews_light.json")
-        .then((res) => res.json())
-        .then((data) => {
-          let articles: any = [];
-          let videos: any = [];
-          let cropped = data.data.slice(0, 1000);
-          console.log(cropped);
-          cropped.forEach((item: any) => {
-            if (item.type === "Article") {
-              articles.push(item)
-            } else if (item.type === "Video") {
-              videos.push(item)
-            }
-          });
-          setArticles(articles);
-          setVideos(videos);
-        });
+      // fetch("./src/data/cryptonews_light.json")
+      //   .then((res) => res.json())
+      //   .then((data) => {
+      //     let articles: any = [];
+      //     let videos: any = [];
+      //     let cropped = data.data.slice(0, 1000);
+      //     console.log(cropped);
+      //     cropped.forEach((item: any) => {
+      //       if (item.type === "Article") {
+      //         articles.push(item)
+      //       } else if (item.type === "Video") {
+      //         videos.push(item)
+      //       }
+      //     });
+      //     setArticles(articles);
+      //     setVideos(videos);
+      //   });
+      let articles: any = [];
+      let videos: any = [];
+      let cropped = newsData.data.slice(0, 1000);
+      console.log(cropped);
+      cropped.forEach((item: any) => {
+        if (item.type === "Article") {
+          articles.push(item);
+        } else if (item.type === "Video") {
+          videos.push(item);
+        }
+      });
+      setArticles(articles);
+      setVideos(videos);
+
     }
 
 
