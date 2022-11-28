@@ -43,11 +43,11 @@ function App() {
   const perPage = "100";
   const sparkline = "true";
   const pricePercentage = "1h%2C24h%2C7d%2C14d%2C30d%2C200d%2C1y";
-
   const cryptosUrl = `${baseUrl}coins/markets?vs_currency=${currency}&order=${order}&per_page=${perPage}&page=${String(
     1
   )}&sparkline=${sparkline}&price_change_percentage=${pricePercentage}`;
-  const globalUrl = "https://api.coingecko.com/api/v3/global";
+  const globalUrl = `${baseUrl}global`;
+
 
   function getCryptoData() {
     fetch(cryptosUrl)
@@ -55,9 +55,6 @@ function App() {
       .then((data) => {
         setCryptos(data);
       });
-  }
-
-  function getGlobalData() {
     fetch(globalUrl)
       .then((res) => res.json())
       .then((data) => {
@@ -66,27 +63,10 @@ function App() {
   }
 
     function getNews() {
-      // fetch("./src/data/cryptonews_light.json")
-      //   .then((res) => res.json())
-      //   .then((data) => {
-      //     let articles: any = [];
-      //     let videos: any = [];
-      //     let cropped = data.data.slice(0, 1000);
-      //     console.log(cropped);
-      //     cropped.forEach((item: any) => {
-      //       if (item.type === "Article") {
-      //         articles.push(item)
-      //       } else if (item.type === "Video") {
-      //         videos.push(item)
-      //       }
-      //     });
-      //     setArticles(articles);
-      //     setVideos(videos);
-      //   });
       let articles: any = [];
       let videos: any = [];
-      let cropped = newsData.data.slice(0, 1000);
-      console.log(cropped);
+      let cropped = newsData.data.slice(0, 200);
+      // console.log(cropped);
       cropped.forEach((item: any) => {
         if (item.type === "Article") {
           articles.push(item);
@@ -96,18 +76,38 @@ function App() {
       });
       setArticles(articles);
       setVideos(videos);
-
     }
 
 
   useEffect(getCryptoData, []);
-  useEffect(getGlobalData, []);
   useEffect(getNews, []);
-
   useEffect(()=> {
     setCurrentVideo(videos[0])
   }, [videos])
 
+
+    const [bookmarks, setBookmarks] = useState(loadBookmarks);
+
+    function loadBookmarks() {
+      let saved: any = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+      if (saved != undefined) {
+        return saved;
+      } else {
+        localStorage.setItem("bookmarks", JSON.stringify([]));
+        return false;
+      }
+    }
+
+      function bookmarkArticle(article: any) {
+        let fav = bookmarks.slice();
+        if (fav.includes(article)) {
+          fav = fav.filter((e: any) => e !== article);
+        } else {
+          fav.push(article);
+        }
+        setBookmarks(fav);
+        localStorage.setItem("bookmarks", JSON.stringify(fav));
+      }
 
 
   return (
@@ -160,15 +160,22 @@ function App() {
 
                     <div className="news-tickers">
                       {article.tickers.map((ticker: any) => {
-                        return <p>{ticker}</p>;
+                        return <p key={nanoid()}>{ticker}</p>;
                       })}
                     </div>
                   </div>
-                  <div className="news-bookmark">
-                    {/* <i className="fa-solid fa-bookmark"></i> */}
-
-                    <i className="fa-regular fa-bookmark"></i>
-                  </div>
+                  <button
+                    className="news-bookmark"
+                    onClick={() => {
+                      bookmarkArticle(article.news_url);
+                    }}
+                  >
+                    {bookmarks.includes(article.news_url) ? (
+                      <i className="fa-solid fa-bookmark bookmarked"></i>
+                    ) : (
+                      <i className="fa-regular fa-bookmark"></i>
+                    )}
+                  </button>
                 </div>
               );
             })}

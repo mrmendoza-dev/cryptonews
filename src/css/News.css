@@ -42,24 +42,6 @@
 }
 
 
-.saved {
-  color: #FFCC66;
-}
-
-.save-btn {
-  color: var(--clr-fontAccent);
-  cursor: pointer;
-  margin: .5em;
-
-  background-color: inherit;
-  border: none;
-  font-size: 1rem;
-  transition: all 100ms;
-}
-
-.save-btn:hover {
-  color: #FFCC66;
-}
 
 
 
@@ -170,7 +152,16 @@
     font-size: 1.1rem;
     cursor: pointer;
     color: var(--clr-fontAccent);
+      transition: all 100ms;
+      border: none;
+      background-color: inherit;
+
 }
 .news-bookmark:hover {
 
 }
+
+.bookmarked {
+  color: var(--clr-font);
+}
+
